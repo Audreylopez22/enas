@@ -1,0 +1,992 @@
+:root {
+    /* Colors */
+    --primary-color: #560C15; /* Granate profundo */
+    --primary-light: #8B1E2D; /* Rojo vino (usado como light para primary) */
+    --primary-dark: #560C15; /* Granate profundo (usado como dark para primary) */
+    --secondary-color: #8B1E2D; /* Rojo vino */
+    --secondary-light: #E2B6A0; /* Nude rosado (usado como light para secondary) */
+    --accent-color: #E2B6A0; /* Nude rosado */
+    --accent-gold: #C6A664; /* Dorado suave (opcional) */
+    
+    /* Grays */
+    --gray-50: #F9F6F5; /* Marfil */
+    --gray-100: #F5F5F5; /* Se mantiene */
+    --gray-200: #EEEEEE; /* Se mantiene */
+    --gray-300: #E0E0E0; /* Se mantiene */
+    --gray-400: #BDBDBD; /* Se mantiene */
+    --gray-500: #9E9E9E; /* Se mantiene */
+    --gray-600: #2E2E2E; /* Gris carbón */
+    --gray-700: #2E2E2E; /* Gris carbón */
+    --gray-800: #2E2E2E; /* Gris carbón */
+    --gray-900: #2E2E2E; /* Gris carbón */
+}
+
+/* Design tokens missing previously: spacing, font sizes, radii, shadows, transitions */
+:root {
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+
+    /* Font sizes */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-lg: 1.125rem; /* 18px */
+    --font-size-xl: 1.25rem; /* 20px */
+    --font-size-2xl: 1.5rem; /* 24px */
+    --font-size-3xl: 2rem; /* 32px */
+    --font-size-4xl: 2.5rem; /* 40px */
+    --font-size-5xl: 3rem; /* 48px */
+
+    /* Radii */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-2xl: 32px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 4px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.16);
+
+    /* Transitions */
+    --transition-base: 0.25s ease;
+}
+
+/* Base reset & layout */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Public Sans', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    font-size: var(--font-size-base);
+    color: var(--gray-900);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--gray-50);
+}
+
+/* Utility container used across sections */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Make images predictable */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Buttons - base */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-weight: 600;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+}
+
+.btn i { display: inline-flex; align-items: center; }
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 8px 24px rgba(86,12,21,0.18);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(86,12,21,0.22);
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.18);
+}
+
+.btn-outline:hover {
+    background: rgba(255,255,255,0.96);
+    color: var(--primary-color);
+}
+
+/* Section default spacing */
+section { padding: 80px 0; }
+
+/* Section title tweak for legibility */
+.section-title { margin-bottom: 28px; }
+
+/* Footer layout (better spacing and alignment) */
+.footer .container { display: flex; align-items: center; justify-content: space-between; flex-direction: column; text-align: center;gap: 20px; }
+.footer .footer-content { width: 100%; display: flex; gap: 20px; align-items: center; }
+.footer .footer-section { flex: 1; }
+
+@media (max-width: 768px) {
+    .footer .container { flex-direction: column; text-align: center; }
+}
+
+/* Small utility */
+.muted { color: var(--gray-600); }
+
+/* Make cards and product sections feel lighter */
+.product-card { padding: 20px; }
+
+/* Gaza Page Specific Styles */
+
+/* Hero Section */
+.gaza-hero {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #560C15 0%, #8B1E2D 100%); /* Granate profundo a Rojo vino */
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.gaza-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.gaza-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.gaza-hero-title {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+}
+
+.gaza-hero-subtitle {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+    line-height: 1.3;
+}
+
+.gaza-hero-description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.gaza-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+.stat {
+    text-align: center;
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(10px);
+    /* Eliminado el borde y la sombra explícitos para un estilo más sutil */
+}
+
+.stat-number {
+    display: block;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+    color: var(--accent-color); /* Nude rosado */
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    color: white;
+}
+
+.gaza-hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform var(--transition-base);
+}
+
+.hero-img:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+/* Story Section */
+.gaza-story {
+    padding: var(--space-24) 0;
+    background: var(--gray-50);
+}
+
+.gaza-story-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    margin-top: var(--space-12);
+}
+
+.story-text p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-6);
+    line-height: 1.7;
+    color: var(--gray-700);
+}
+
+.story-text strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.story-image {
+    display: flex;
+    justify-content: center;
+}
+
+.story-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Products Section */
+.gaza-products {
+    padding: var(--space-24) 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.product-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.product-image {
+    margin: calc(-1 * var(--space-8)) calc(-1 * var(--space-8)) var(--space-6) calc(-1 * var(--space-8));
+    overflow: hidden;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
+}
+
+.product-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #560C15, #8B1E2D); /* Granate profundo a Rojo vino */
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+}
+
+.product-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.product-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--space-4);
+}
+
+.product-description {
+    font-size: var(--font-size-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+}
+
+.product-impact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+}
+
+.impact-item {
+    text-align: center;
+}
+
+.impact-number {
+    display: block;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--space-1);
+}
+
+.impact-label {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.product-cost {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+}
+
+.cost-amount {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+.product-urgency {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-style: italic;
+    background: #E2B6A0; /* Nude rosado */
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border-left: 4px solid #C6A664; /* Dorado suave */
+}
+
+.product-necessity {
+    margin-bottom: var(--space-6);
+}
+
+.necessity-text {
+    background: #8B1E2D; /* Rojo vino */
+    color: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid #560C15; /* Granate profundo */
+    font-size: var(--font-size-base);
+}
+
+.product-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--gray-700);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: var(--font-size-lg);
+}
+
+/* Gallery Section */
+.gaza-gallery {
+    padding: var(--space-24) 0;
+    background: var(--gray-50);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: var(--space-6) var(--space-4) var(--space-4);
+    transform: translateY(100%);
+    transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-caption {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+/* Call to Action Section */
+.gaza-cta {
+    padding: var(--space-24) 0;
+    background: linear-gradient(135deg, #8B1E2D 0%, #560C15 100%); /* Rojo vino a Granate profundo */
+    color: white;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+}
+
+.cta-description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.cta-goal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-12);
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(10px);
+}
+
+.goal-amount {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.goal-note {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-large {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--secondary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Organization Info Section */
+.gaza-org-info {
+    padding: var(--space-24) 0;
+    background: var(--gray-50);
+}
+
+.org-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.info-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform var(--transition-base);
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+}
+
+.info-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #560C15, #E2B6A0); /* Granate profundo a Nude rosado */
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+}
+
+.info-icon i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.info-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--space-4);
+}
+
+.info-card p {
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* Donation Options Section */
+.gaza-donation-options {
+    padding: var(--space-24) 0;
+    background: var(--gray-100);
+    text-align: center;
+}
+
+.donation-options-description {
+    font-size: var(--font-size-lg);
+    color: var(--gray-700);
+    margin-bottom: var(--space-12);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.donation-buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.btn-donation {
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    flex-grow: 1; /* Permite que los botones crezcan para llenar el espacio */
+    max-width: 300px; /* Limita el ancho máximo de los botones */
+}
+
+.btn-donation i {
+    margin-right: var(--space-2); /* Espacio entre el icono y el texto */
+}
+
+.gaza-products .btn-large {
+    display: block;
+    margin: var(--space-12) auto 0 auto; /* Centra el botón y añade margen superior */
+    width: fit-content;
+    max-width: 300px; /* Limita el ancho máximo del botón */
+}
+
+.donation-layout-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Alinea los elementos en la parte superior */
+  gap: var(--space-8); /* Espacio entre el iframe y los botones */
+  margin-top: var(--space-12);
+}
+
+.donation-layout-grid .iframe-container {
+  flex: 1 1 640px; /* Permite que el iframe crezca hasta 640px o se encoja */
+  max-width: 640px; /* Limita el ancho del iframe */
+  margin: 0; /* Elimina el margen auto para el posicionamiento flex */
+}
+
+.donation-layout-grid .donation-buttons-grid {
+  flex: 1 1 auto; /* Permite que los botones ocupen el espacio restante */
+  display: flex; /* Asegura que los botones se comporten como una columna flex */
+  flex-direction: column; /* Apila los botones verticalmente */
+  justify-content: flex-start; /* Alinea los botones a la izquierda en su contenedor */
+  max-width: 400px; /* Limita el ancho de la rejilla de botones si es necesario */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (min-width: 769px) {
+  .donation-layout-grid {
+    justify-content: space-between; /* Espacio entre el iframe y los botones */
+  }
+  .donation-layout-grid .iframe-container {
+    order: 0.5; /* Iframe a la izquierda */
+  }
+  .donation-layout-grid .donation-buttons-grid {
+    order: 2; /* Botones a la derecha */
+    justify-content: flex-end; /* Alinea los botones a la derecha en su contenedor */
+  }
+}
+
+@media (max-width: 768px) {
+  .donation-layout-grid {
+    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    align-items: center; /* Centra los elementos apilados */
+  }
+  .donation-layout-grid .iframe-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .donation-layout-grid .donation-buttons-grid {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center; /* Centra los botones en pantallas pequeñas */
+  }
+}
+
+/* Video Section */
+.gaza-video-section {
+    padding: var(--space-24) 0;
+    background: var(--gray-50);
+    text-align: center;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 900px;
+    margin: var(--space-12) auto 0 auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+}
+
+.responsive-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    text-align: center;
+    color: var(--gray-900);
+    margin-bottom: var(--space-4);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #560C15, #E2B6A0); /* Granate profundo a Nude rosado */
+    border-radius: var(--radius-full);
+}
+
+/* Footer */
+.footer {
+    background: var(--secondary-color);
+    color: white;
+    padding: var(--space-20) 0 var(--space-8) 0;
+}
+
+.footer-logo-img {
+    max-width: 200px; 
+    height: auto; 
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--gray-300);
+}
+
+.footer-links a:hover {
+    color: var(--secondary-light);
+}
+
+.footer-contact p {
+    color: var(--gray-300);
+}
+
+.footer-contact i {
+    color: var(--secondary-light);
+}
+
+.footer-contact a {
+    color: white;
+}
+
+/* Estilos para el iframe de donaciones */
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 120.3125%; /* (770 / 640) * 100% */
+  margin-top: var(--space-12); /* Espacio superior */
+  border-radius: var(--radius-xl); /* Bordes redondeados */
+  box-shadow: var(--shadow-xl); /* Sombra para destacarlo */
+  background-color: white; /* Fondo blanco mientras carga */
+  max-width: 640px; /* Ancho máximo según tu iframe */
+  max-height: 700px; /* Altura máxima del iframe */
+  margin-left: auto;
+  margin-right: auto; /* Centrar el contenedor */
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Ajuste responsive para móviles si es necesario */
+@media (max-width: 768px) {
+  .iframe-container {
+    padding-top: 150%; /* Puede que necesites más altura en móviles para el formulario */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .gaza-hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+    }
+    
+    .gaza-hero-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .gaza-hero-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-impact {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .org-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .cta-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-section {
+        text-align: center;
+        
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .footer-links,
+    .footer-contact {
+        align-items: center; /* Centra los elementos de la lista y contacto */
+    }
+}
+
+@media (max-width: 480px) {
+    .gaza-hero {
+        padding: 100px 0 60px;
+    }
+    
+    .gaza-hero-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .gaza-hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-card {
+        padding: var(--space-6);
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .cta-title {
+        font-size: var(--font-size-2xl);
+    }
+}
