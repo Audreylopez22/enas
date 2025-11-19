@@ -682,25 +682,29 @@ section { padding: 80px 0; }
 }
 
 .donation-buttons-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-6);
-  max-width: 1000px;
-  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: stretch;
+    width: 100%;
+    max-width: 420px; /* ancho de columna de botones en escritorio */
+    margin: 0;
+    align-items: center;
 }
 
 .btn-donation {
-    padding: var(--space-4) var(--space-6);
+    padding: 14px 16px;
     font-size: var(--font-size-lg);
     font-weight: 600;
     border-radius: var(--radius-lg);
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--space-3);
+    justify-content: center; /* CENTRAR icono + texto horizontalmente */
+    text-align: center; /* asegurar texto centrado cuando haya wrapping */
     transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
-    flex-grow: 1; /* Permite que los botones crezcan para llenar el espacio */
-    max-width: 300px; /* Limita el ancho máximo de los botones */
+    width: 100%; /* ocupa todo el ancho de su columna */
+    box-shadow: 0 8px 20px rgba(86,12,21,0.08);
 }
 
 .btn-donation i {
@@ -721,6 +725,8 @@ section { padding: 80px 0; }
   align-items: flex-start; /* Alinea los elementos en la parte superior */
   gap: var(--space-8); /* Espacio entre el iframe y los botones */
   margin-top: var(--space-12);
+    align-items: center;
+
 }
 
 .donation-layout-grid .iframe-container {
@@ -730,11 +736,13 @@ section { padding: 80px 0; }
 }
 
 .donation-layout-grid .donation-buttons-grid {
-  flex: 1 1 auto; /* Permite que los botones ocupen el espacio restante */
-  display: flex; /* Asegura que los botones se comporten como una columna flex */
-  flex-direction: column; /* Apila los botones verticalmente */
-  justify-content: flex-start; /* Alinea los botones a la izquierda en su contenedor */
-  max-width: 400px; /* Limita el ancho de la rejilla de botones si es necesario */
+    flex: 0 0 360px; /* columna fija en desktop para botones */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    justify-content: flex-start;
+    align-items: stretch;
+    max-width: 420px;
 }
 
 /* Ajustes para pantallas más pequeñas */
@@ -760,11 +768,18 @@ section { padding: 80px 0; }
     width: 100%;
     max-width: 100%;
   }
-  .donation-layout-grid .donation-buttons-grid {
-    width: 100%;
-    max-width: 100%;
-    justify-content: center; /* Centra los botones en pantallas pequeñas */
-  }
+    .donation-layout-grid .donation-buttons-grid {
+        width: 100%;
+        max-width: 640px;
+        justify-content: center; /* Centra los botones en pantallas pequeñas */
+        padding-top: var(--space-4);
+    }
+    .donation-layout-grid .donation-buttons-grid .btn-donation {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1rem;
+        justify-content: center; /* asegurar centrado en móvil también */
+    }
 }
 
 /* Video Section */
@@ -851,14 +866,14 @@ section { padding: 80px 0; }
 
 /* Estilos para el iframe de donaciones */
 .iframe-container {
-    height: 800px;
+    height: 500px;
   position: relative;
   overflow: hidden;
   margin-top: var(--space-12); /* Espacio superior */
   border-radius: var(--radius-xl); /* Bordes redondeados */
   box-shadow: var(--shadow-xl); /* Sombra para destacarlo */
   background-color: white; /* Fondo blanco mientras carga */
-  max-width: 640px; /* Ancho máximo según tu iframe */
+  max-width: 500px; /* Ancho máximo según tu iframe */
   margin-left: auto;
   margin-right: auto; /* Centrar el contenedor */
 }
